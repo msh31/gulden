@@ -34,8 +34,7 @@ project(gulden
 
 # Target: gchain
 set(gchain_SOURCES
-	"chain/test.cpp"
-	"chain/test.hpp"
+	"chain/block.cpp"
 	cmake.toml
 )
 
@@ -48,12 +47,18 @@ target_compile_features(gchain PUBLIC
 	cxx_std_23
 )
 
-target_compile_options(gchain PUBLIC
-	"/W4"
-)
+if(WIN32) # windows
+	target_compile_options(gchain PUBLIC
+		"/W4"
+	)
+endif()
 
 target_include_directories(gchain PUBLIC
 	include
+)
+
+target_precompile_headers(gchain PUBLIC
+	pch.hpp
 )
 
 # Target: gulden
@@ -77,12 +82,12 @@ if(WIN32) # windows
 	)
 endif()
 
-target_include_directories(gulden PRIVATE
-	include
-)
-
 target_link_libraries(gulden PRIVATE
 	gchain
+)
+
+target_precompile_headers(gulden PRIVATE
+	pch.hpp
 )
 
 get_directory_property(CMKR_VS_STARTUP_PROJECT DIRECTORY ${PROJECT_SOURCE_DIR} VS_STARTUP_PROJECT)

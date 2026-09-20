@@ -18,6 +18,9 @@ sources = [
 ]
 include-directories = ["include"]
 compile-features = ["cxx_std_23"]
+precompile-headers = ["pch.hpp"]
+
+[target.gchain.windows]
 compile-options = ["/W4"]
 
 [target.gulden]
@@ -26,7 +29,7 @@ sources = [
     "coin/**.cpp",
     "coin/**.hpp"
 ]
-include-directories = ["include"]
+precompile-headers = ["pch.hpp"]
 link-libraries = ["gchain"]
 compile-features = ["cxx_std_23"]
 

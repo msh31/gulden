@@ -1,6 +1,6 @@
-#include "../chain/test.hpp"
+#include <chain/block.hpp>
 
 auto main() -> int {
-    Test::test("coin");
+    gchain::make_block(0, "genesis");
     return 0;
 }

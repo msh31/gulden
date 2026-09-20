@@ -35,6 +35,7 @@ project(gulden
 # Target: gchain
 set(gchain_SOURCES
 	"chain/block.cpp"
+	"chain/chain.cpp"
 	cmake.toml
 )
 

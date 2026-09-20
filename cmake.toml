@@ -1,0 +1,34 @@
+# Reference: https://build-cpp.github.io/cmkr/cmake-toml
+[cmake]
+version = "3.31"
+cmkr-include = "cmkr.cmake"
+
+[project]
+name = "gulden"
+languages = ["CXX"]
+
+[variables]
+CMAKE_EXPORT_COMPILE_COMMANDS = true
+
+[target.gchain]
+type = "static"
+sources = [
+    "chain/**.cpp",
+    "chain/**.hpp",
+]
+include-directories = ["include"]
+compile-features = ["cxx_std_23"]
+compile-options = ["/W4"]
+
+[target.gulden]
+type = "executable"
+sources = [
+    "coin/**.cpp",
+    "coin/**.hpp"
+]
+include-directories = ["include"]
+link-libraries = ["gchain"]
+compile-features = ["cxx_std_23"]
+
+[target.gulden.windows]
+compile-options = ["/W4"]
